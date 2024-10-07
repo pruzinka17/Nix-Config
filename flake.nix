@@ -20,6 +20,7 @@
         pkgs.tmux
       ];
 
+      # Homebrew packages
       homebrew = {
         enable = true;
         casks = [
@@ -27,11 +28,20 @@
         ];
       };
 
+      # Font packages
       fonts.packages = 
       [
         (pkgs.nerdfonts.override { fonts= [ "JetBrainsMono" ]; })
       ];
 
+      # System Settings configuration
+      system.defaults = {
+        dock.autohide = true;
+        finder.FXPreferredViewStyle = "clmv";
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+      };
+
+      # Alias applications from /Applications/Nix to /Applications for finder access
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
           name = "system-applications";
@@ -51,12 +61,6 @@
             ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
           done
         '';
-
-      system.defaults = {
-        dock.autohide = true;
-        finder.FXPreferredViewStyle = "clmv";
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
-      };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -83,7 +87,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."macbook-pro" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."pro" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         nix-homebrew.darwinModules.nix-homebrew
@@ -103,6 +107,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."macbook-pro".pkgs;
+    darwinPackages = self.darwinConfigurations."pro".pkgs;
   };
 }
