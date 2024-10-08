@@ -15,17 +15,37 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
       [ 
-        pkgs.neovim
         pkgs.mkalias
-        pkgs.tmux
+        pkgs.nodenv
+        pkgs.firebase-tools
+        pkgs.lazy-git
+        pkgs.oh-my-posh
+        pkgs.watchman
       ];
 
       # Homebrew packages
       homebrew = {
         enable = true;
-        casks = [
-          "the-unarchiver"
+        casks =
+        [
+          "telegram"
+          "spotify"
+          "keepingyouawake"
+          "balenaetcher"
+          "hiddenbar"
+          "stats"
+          "visual-studio-code"
+          "android-studio"
+          "arc"
+          "discord"
+          "slack"
+          "postman"
         ];
+        masApps = 
+        {
+          "Xcode" = 497799835;
+        };
+        onActivation.cleanup = "zap";
       };
 
       # Font packages
@@ -35,7 +55,8 @@
       ];
 
       # System Settings configuration
-      system.defaults = {
+      system.defaults = 
+      {
         dock.autohide = true;
         finder.FXPreferredViewStyle = "clmv";
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
@@ -99,8 +120,6 @@
             enableRosetta = true;
             # User owning the Homebrew prefix
             user = "miroslavborek";
-            # Automatically migrate existing Homebrew installations
-            autoMigrate = true;
           };
         }
       ];
