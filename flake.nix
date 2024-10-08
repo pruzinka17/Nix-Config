@@ -40,6 +40,7 @@
           "discord"
           "slack"
           "postman"
+          "sdformatter"
         ];
         masApps = 
         {
