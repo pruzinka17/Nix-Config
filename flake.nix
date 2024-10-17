@@ -46,6 +46,7 @@
         {
           "Xcode" = 497799835;
           "Keynote" = 409183694;
+          "Cleaner for Xcode" = 1296084683;
         };
         onActivation.cleanup = "zap";
       };
